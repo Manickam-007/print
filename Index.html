@@ -1,109 +1,302 @@
-<style>
-    /* General Styles */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing Service</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
 
-    /* Navigation Bar */
-    nav {
-        background-color: #444;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+        /* Navigation Bar */
+        nav {
+            background-color: #444;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    nav .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    nav .logo {
-        color: white;
-        font-size: 1.5rem;
-        text-decoration: none;
-    }
-
-    nav .hamburger {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-    }
-
-    nav .hamburger div {
-        width: 25px;
-        height: 3px;
-        background-color: white;
-        margin: 4px 0;
-    }
-
-    nav .nav-links {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav .nav-links li {
-        margin: 0;
-    }
-
-    nav .nav-links a {
-        color: white;
-        text-decoration: none;
-        padding: 0.8rem 1rem;
-        display: block;
-        transition: background-color 0.3s;
-    }
-
-    nav .nav-links a:hover {
-        background-color: #555;
-    }
-
-    nav .nav-links a.active {
-        background-color: #6c6d6e;
-    }
-
-    /* Mobile Hidden Menu */
-    nav .nav-links.mobile-hidden {
-        display: none;
-        flex-direction: column;
-        background-color: #444;
-        width: 100%;
-    }
-
-    nav .nav-links.mobile-hidden.active {
-        display: flex;
-    }
-
-    /* Media Queries for Mobile */
-    @media screen and (max-width: 768px) {
-        nav .hamburger {
+        nav .nav-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            position: absolute;
+            left: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        nav .hamburger {
+            position: absolute;
+            right: 1rem;
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        nav .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
         }
 
         nav .nav-links {
-            display: none;
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
+        nav .nav-links li {
+            margin: 0;
+        }
+
+        nav .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            background-color: #555;
+        }
+
+        nav .nav-links a.active {
+            background-color: #6c6d6e;
+        }
+
+        /* Mobile Hidden Menu */
         nav .nav-links.mobile-hidden {
             display: none;
+            flex-direction: column;
+            background-color: #444;
+            width: 100%;
         }
 
         nav .nav-links.mobile-hidden.active {
             display: flex;
         }
-    }
-</style>
-<script>
-    function toggleMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        navLinks.classList.toggle('active');
-    }
-</script>
+
+        /* Media Queries for Mobile */
+        @media screen and (max-width: 768px) {
+            nav .hamburger {
+                display: flex;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            nav .nav-links.mobile-hidden {
+                display: none;
+            }
+
+            nav .nav-links.mobile-hidden.active {
+                display: flex;
+            }
+
+            nav .nav-container {
+                justify-content: space-between;
+            }
+        }
+
+        /* Video Background Section */
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 1rem;
+        }
+
+        .video-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-content p {
+            font-size: 1.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .feature {
+            flex: 1 1 300px;
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Call-to-Action Section */
+        .cta {
+            text-align: center;
+            background-color: #6c6d6e;
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta button {
+            background-color: white;
+            color: #6c6d6e;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .cta button:hover {
+            background-color: #6c6d6e;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">3D Print</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#quote">Request Quote</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Video Background -->
+    <section class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="https://ik.imagekit.io/h05mivc2s/Cover%20video%20main.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="video-content">
+            <h1>Revolutionize Your Ideas with Precision 3D Printing</h1>
+            <p>High-quality, customized solutions that bring your visions to life—fast, efficient, and precise.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <h3>Rapid Prototyping</h3>
+            <p>From concept to prototype in no time.</p>
+        </div>
+        <div class="feature">
+            <h3>Custom 3D Printing</h3>
+            <p>Tailored designs, crafted with the latest tech.</p>
+        </div>
+        <div class="feature">
+            <h3>Fast, Reliable, Scalable</h3>
+            <p>Quality, speed, and scalability that grow with your needs.</p>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta">
+        <h2>Let’s Create Something Extraordinary</h2>
+        <button>Contact Us Now</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 [Your Organization's Name]. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('mobile-hidden');
+        }
+    </script>
+</body>
+</html>
