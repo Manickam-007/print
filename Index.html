@@ -1,0 +1,109 @@
+<style>
+    /* General Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    /* Navigation Bar */
+    nav {
+        background-color: #444;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    nav .logo {
+        color: white;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+
+    nav .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    nav .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 4px 0;
+    }
+
+    nav .nav-links {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav .nav-links li {
+        margin: 0;
+    }
+
+    nav .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        display: block;
+        transition: background-color 0.3s;
+    }
+
+    nav .nav-links a:hover {
+        background-color: #555;
+    }
+
+    nav .nav-links a.active {
+        background-color: #6c6d6e;
+    }
+
+    /* Mobile Hidden Menu */
+    nav .nav-links.mobile-hidden {
+        display: none;
+        flex-direction: column;
+        background-color: #444;
+        width: 100%;
+    }
+
+    nav .nav-links.mobile-hidden.active {
+        display: flex;
+    }
+
+    /* Media Queries for Mobile */
+    @media screen and (max-width: 768px) {
+        nav .hamburger {
+            display: flex;
+        }
+
+        nav .nav-links {
+            display: none;
+        }
+
+        nav .nav-links.mobile-hidden {
+            display: none;
+        }
+
+        nav .nav-links.mobile-hidden.active {
+            display: flex;
+        }
+    }
+</style>
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+</script>
